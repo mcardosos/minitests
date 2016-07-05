@@ -1,1 +1,1 @@
-`go test -v ./body-boolean ./report`
+`go test ./booleangroup_test ./report_test -v`
