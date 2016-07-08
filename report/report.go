@@ -2,13 +2,11 @@ package report
 
 import (
 	"fmt"
-
-	"github.com/Azure/Tests/report"
 )
 
 func GetReport() string {
 	output := ""
-	var reportClient = report.NewWithBaseURI("http://localhost:3000", "jsklad")
+	var reportClient = NewWithBaseURI("http://localhost:3000", "jsklad")
 	res, err := reportClient.GetReport()
 	if err != nil {
 		output += fmt.Sprintf("Error: %v\n", err)
