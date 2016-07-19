@@ -1,12 +1,14 @@
-package report
+package autorestreport
 
 import (
+	"Tests/report"
+	"Tests/utils"
 	"fmt"
 )
 
 func GetReport() string {
 	output := ""
-	var reportClient = NewWithBaseURI("http://localhost:3000", "jsklad")
+	var reportClient = report.NewWithBaseURI(utils.GetBaseURI(), "jsklad")
 	res, err := reportClient.GetReport()
 	if err != nil {
 		output += fmt.Sprintf("Error: %v\n", err)
