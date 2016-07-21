@@ -1,0 +1,21 @@
+$goInstall = {
+    write-host -fore yellow -back black "Installing go"
+    choco install golang -Confirm:$true
+
+    #Add GOPATH environment variable
+    cd $env:HOMEPATH
+    mkdir goWorkspace
+    cmd.exe /c setx GOPATH "$($env:HOMEPATH)\goWorkspace"
+    
+    #Add GOPATH/bin to PATH environment variable
+    $userPath = [Environment]::GetEnvironmentVariables("User").PATH
+    cmd.exe /c setx PATH "$($env:GOPATH)\bin;$userPath"
+}
+
+$glideInstall = {
+    cd $env:GOPATH
+    mkdir src/github.com/Masterminds
+    cd src/github.com/Masterminds
+    go get -u https://github.com/Masterminds/glide.git
+    go install github.com/Masterminds/glide
+}

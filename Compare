@@ -1,0 +1,184 @@
+G
+
+COMPLEX
+ATTENTION! Many strage details!
+//On report but not on code
+    TestPutComplexPolymorphicRecursiveValid 0
+
+    TestGetComplexPolymorphicRecursiveValid 0
+
+//Incorrect name and originally commented and broken
+    TestPutValidReadOnlyComplex -- on code - M breaks too
+    TestPutComplexReadOnlyPropertyValid 0 --on report - M breaks too
+
+IncorrectNames and broken!
+    TestPutValidPolymorphicComplex --on code - M breaks too
+    putComplexPolymorphismValid 0 --on report - M breaks too
+
+    TestPutValidArrayComplex --on code - M breaks too
+    TestPutComplexArrayValid 0 --report - M breaks too
+
+Appear on code broken tests, but not on report...
+    TestGetValidPolymorphicComplex (breaks because it always returns false)
+
+    TestGetValidReadOnlyComplex
+
+HTTP
+
+    Code
+        TestDelete307
+        TestGet300
+        TestHead300
+        TestPatch307
+        TestPost307
+        TestPut307
+
+    Report and code
+        TestHttpRetry504Put 0
+        TestHttpRetry504Patch 0
+        TestHttpRetry503Delete 0
+        TestHttpRetry500Put 0
+        TestHttpRetry502Get 0
+        TestHttpRetry408Head 0
+        TestHttpRetry500Patch 0
+        TestHttpRetry503Post 0
+
+HEADER
+//ATTENTION! - incorrect names!
+//Commented by G, but actually pass...
+    TestHeaderParamEnumNull --code    
+    TestHeaderParameterEnumNull 0 --report
+
+    TestHeaderParamStringNull --code
+    TestHeaderParameterStringNull 0 --report
+
+//Commented by G (broken)
+    TestHeaderParamProtectedKey
+
+By code, nothing on report
+
+MODEL FLATTENING
+    on report
+        TestPutModelFlattenCustomBase 0
+
+    on report and code
+        TestPutResourceCollection
+        TestPutDictionary       
+
+    on code
+        TestGetArray
+        TestGetDictionary
+        TestGetResourceCollection
+        TestPutSimpleProduct
+
+OPTIONAL
+on report
+    TestOptionalArrayHeader 0
+    TestOptionalIntegerHeader 0
+    TestOptionalArrayProperty 0
+    TestOptionalStringParameter 0
+    TestOptionalGlobalQuery 0
+    TestOptionalIntegerParameter 0
+    TestOptionalArrayParameter 0
+    TestOptionalStringHeader 0
+    TestOptionalClassParameter 0
+    TestOptionalStringProperty 0
+    TestOptionalIntegerProperty 0
+    TestOptionalClassProperty 0
+
+on code
+    TestGetRequiredGlobalPath
+    TestGetRequiredGlobalQuery
+    TestGetRequiredPath
+
+URL
+    TestUrlQueriesArrayCsvEmpty 0
+
+    sometimes breaks...
+        TestPathByteNull
+
+    Not in coverage, for now
+        TestPathBase64URL (no Base64URL field or method)
+        TestPathStringNull
+        TestPathStringUnicode (ruins everything...)
+
+    PathByteNull -- incorrectly written
+
+
+==============================
+
+M
+
+COMPLEX
+//ATTENTION!!!
+Mismatched types
+    TestGetEmptyBasicOperationsComplex (complexgroup.CMYKColors vs string)
+    TestGetIntComplex (int32 vs int)
+    TestGetLongComplex (int64 vs int)
+    TestGetNotProvidedBasicOperationsComplex (complexgroup.CMYKColors vs string)
+    TestGetNullBasicOperationsComplex (complexgroup.CMYKColors vs string)
+    TestGetValidBasicOperationsComplex (complexgroup.CMYKColors vs string)
+    TestGetValidInheritanceComplex (int32 vs int)
+
+Expecting nil error
+    TestGetValidReadOnlyComplex -- G breaks too
+    TestPutValidArrayComplex -- G breaks too
+    TestPutValidPolymorphicComplex -- G breaks too (It always returns false)
+    TestPutValidReadOnlyComplex -- G breaks too --originally commented
+
+Fixed (I hope) tests
+    TestPutComplexPolymorphicValid (easy fix)
+    TestGetComplexPolymorphicValid (added deepequals check)
+
+HEADER
+Mismatched types
+    TestHeaderResponseIntNegative (int64 vs int)
+    TestHeaderResponseIntPositive (int64 vs int)
+    TestHeaderResponseLongNegative (int64 vs int)
+    TestHeaderResponseLongPositive (int64 vs int)
+
+Expected nil error
+    TestHeaderParamProtectedKey
+
+HTTP
+    TestDelete307
+    TestGet300
+    TestHead300
+    TestPatch307
+    TestPost307
+    TestPut307
+
+MODEL FLATTENING
+    Didnt pass deepequals
+        TestGetArray
+        TestGetDictionary
+        TestGetResourceCollection
+
+    Expected nil error
+        TestPutDictionary
+        TestPutResourceCollection
+        TestPutSimpleProduct
+
+URL
+
+//These tests were commented by G
+Expected non nil error
+    TestPathDateNull
+    TestPathDateTimeNull
+
+
+Expected nil error
+    TestPathByteNull
+    TestQueryArrayStringCsvEmpty
+
+Not in coverage, for now (commented)
+    TestPathBase64URL (no Base64URL field or method)
+    TestPathStringUnicode (ruins everything...)
+
+PathByteNull -- not sure if correctly written
+
+
+
+=================================
+
+Other languages have tests for UNIX time... Maybe those are missing?

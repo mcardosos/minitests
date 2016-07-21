@@ -1,5 +1,15 @@
-`go test ./... -v`
+add this to gulpfile
+```
+var goCommands = [
+  'glide install',
+  'go test ./go-acceptance-tests/... -v'
+];
 
-Add this to gulpfile...
+function goTest() {
+  process.env.GOPATH = basePathOrThrow() + '/AutoRest/Generators/Go/Go.Tests';
+  return shell.task(goCommands, {
+      cwd: './AutoRest/Generators/Go/Go.Tests/src/Tests', verbosity: 3});
+}
 
-`gulp.task('test:go', shell.task('go test ./... -v', {cwd: './src/generator/AutoRest.Go.Tests', verbosity: 3}));`
+gulp.task('test:go', goTest());
+```

@@ -1,0 +1,2 @@
+find-orAdd "go.exe" ( @( "${env:ProgramFiles(x86)}","${env:ProgramFiles}","c:\tools")) -hint "see https://golang.org/dl/"
+find-orAdd "glide.exe" -hint "see https://github.com/Masterminds/glide"
